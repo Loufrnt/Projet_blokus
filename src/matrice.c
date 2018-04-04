@@ -1,7 +1,60 @@
 #include "matrice.h"
 #include "structures.h"
 
-void init_matrice (t_matrice* matrice) { //FONCTIONNE CORRECTEMENT
+/**
+ * \file matrice.c
+ * \brief Ensemble de fonctions servants Ã  l'utilisation des matrices.
+ * \author Friant Marilou Tourpe Florian Semamra Kevin Amillard Joris
+ * \version 1
+ *
+ * \fn void init_matrice (t_matrice* matrice)
+ * \brief Fonction qui initialise une matrice de taille 5x5.
+ * \param matrice Pointeur de type t_matrice contenant la matrice a initialiser.
+ *
+ * \fn void afficher_matrice (t_matrice matrice) 
+ * \brief Affiche tous les elements de la liste, utile au debug et pour afficher la piece selectionnee
+ * \param matrice Variable de type t_matrice.
+ *
+ * \fn void copie_matrice(t_matrice* source, t_matrice* copie)
+ * \brief Copie le contenu de la marice source vers la marice copie.
+ * \param source Variable de type t_matrice.
+ * \param copie Variable de type t_matrice.
+ *
+ * \fn void insertion_matrice_piece(t_matrice* matrice, t_coordonnee coord)
+ * \brief Affecte a la structure t_matrice les coordonnees d'une piece contenues dans la variable coord
+ * \param matrice Pointeur de type t_matrice qui recoit l'affectation dans son champ mat.
+ * \param coord Variable de type t_coordonnee comportant les coordonnees de la piece.
+ *
+ * \fn void insertion_num_piece(t_matrice* matrice, int numero)
+ * \brief Affecte a la structure t_matrice un numero de piece
+ * \param matrice Pointeur de type t_matrice qui recoit l'affectation dans son champ num.
+ * \param numero Variable de type integer contenant le numero de la piece.
+ *
+ * \fn void insertion_taille_piece(t_matrice* matrice, int taille_piece)
+ * \brief Affecte a la structure t_matrice la taille d'une piece dans son champ taille.
+ * \param matrice Pointeur de type t_matrice qui recoit l'affectation.
+ * \param numero Variable de type integer contenant la taille de la piece.
+ *
+ * \fn void miroir_horizontal (int mat [5][5])
+ * \brief Effecue une rotation horizontale sur la matrice passee en parametre
+ * \param matrice Matrice de type integer contenant la piece a tourner.
+ *
+ * \fn void miroir_vertical (int mat [5][5]) 
+ * \brief Effecue une rotation verticale sur la matrice passee en parametre
+ * \param matrice Matrice de type integer contenant la piece a tourner.
+ *
+ * \fn void tourner_piece (int mat [5][5])
+ * \brief Effecue une rotation a 90 degre sur la matrice passee en parametre
+ * \param matrice Matrice de type integer contenant la piece a tourner.
+ *
+ * \fn void rotation (int mat [5][5], int sens)
+ * \brief Fonction appelant tourner_piece mais permettant de faire plusieurs rotations d'un coup.
+ * \param matrice Matrice de type integer contenant la piece a tourner.
+ * \param sens Variable de type integer donnant le nombre de rotation a effectuer.
+ *
+ */
+
+void init_matrice (t_matrice* matrice) {
 	int i, j;
 
 	matrice->taille = 0;
@@ -11,8 +64,8 @@ void init_matrice (t_matrice* matrice) { //FONCTIONNE CORRECTEMENT
 			matrice->mat[i][j] = 0;
 	}
 }
-/* Affiche tous les elements de la liste, utile au debug et pour afficher la piece selectionner*/
-void afficher_matrice (t_matrice matrice) { //FONCTIONNE CORRECTEMENT
+
+void afficher_matrice (t_matrice matrice) {
 	int i, j;
 
 	for (i = 0; i < 5; i++) {
@@ -26,12 +79,12 @@ void afficher_matrice (t_matrice matrice) { //FONCTIONNE CORRECTEMENT
 		printf("|");
 		printf("\n");
 	}
-	printf("num = %i\n", matrice.num+1); // !! ATTTENTION n'affiche pas le numeros contenue dans la memoire ATTTENTION !!
+	printf("num = %i\n", matrice.num+1); // !! ATTTENTION n'affiche pas le numeros contenue dans la memoire
     printf("taille = %i\n", matrice.taille);
     printf("\n");
 }
 
-/* copie le contenue d'une type matrice dans une autre */
+
 void copie_matrice(t_matrice* source, t_matrice* copie){
     int i,j;
 
@@ -45,22 +98,22 @@ void copie_matrice(t_matrice* source, t_matrice* copie){
     }
 }
 
-/* Insert la matrice de la piece */
-void insertion_matrice_piece(t_matrice* matrice, t_coordonnee coord){ //FONCTIONNE CORRECTEMENT
+
+void insertion_matrice_piece(t_matrice* matrice, t_coordonnee coord){ 
     matrice->mat[coord.x][coord.y] = 1;
 }
 
-/* Insert le numero de la piece */
-void insertion_num_piece(t_matrice* matrice, int numero){ //FONCTIONNE CORRECTEMENT
+
+void insertion_num_piece(t_matrice* matrice, int numero){ 
     matrice->num = numero;
 }
 
-/* Insert la taille de la piece */
-void insertion_taille_piece(t_matrice* matrice, int taille_piece){ //FONCTIONNE CORRECTEMENT
+
+void insertion_taille_piece(t_matrice* matrice, int taille_piece){
     matrice->taille = taille_piece;
 }
 
-/*Donne le miroir miroir_horizontal*/
+
 void miroir_horizontal (int mat [5][5]) {
     int i, j, tampon, max = 4;
 
@@ -73,7 +126,7 @@ void miroir_horizontal (int mat [5][5]) {
     }
 }
 
-/*Donne le miroir vertical*/
+
 void miroir_vertical (int mat [5][5]) {
     int i, j, tampon, max = 4;
 
@@ -86,7 +139,7 @@ void miroir_vertical (int mat [5][5]) {
     }
 }
 
-/*Fait tourner la pièce*/
+
 void tourner_piece (int mat [5][5]) {
     int i,j, tampon, max = 4;
 
